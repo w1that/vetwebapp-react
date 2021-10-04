@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
+import { useMediaQuery } from 'react-responsive';
 
 function WelcomePage() {
+    const isDesktop = useMediaQuery({
+        query: "(min-width: 1227px)",
+      });
+      const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
+
     const [selectedUserType, setSelectedUserType] = useState(0)
 
     function setOwnerOption(){
@@ -17,7 +23,7 @@ function WelcomePage() {
         <div>
 
           <div className="backgroundDiv" >
-            <div className="blurredField">
+            <div className={isMobile&&"blurredFieldMobile" || isDesktop&& "blurredFieldDesktop"}>
             <h1 className="welcomepageFont welcomepageHeader">VET WEB APP</h1>
                 <div className="whiteFieldInBlurred">
                     <div className="userSelectTab">
