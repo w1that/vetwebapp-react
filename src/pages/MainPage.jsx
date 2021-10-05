@@ -5,6 +5,8 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { setCurrentUser } from '../redux/userSlice';
 import Map from "../components/Map";
+import { Container } from 'semantic-ui-react';
+import Post from '../components/Post';
 
 function MainPage() {
     const user = useSelector(state => state.user.currentUser)
@@ -15,11 +17,11 @@ function MainPage() {
         dispatch(setCurrentUser(null))
     }
     return (
-        <div>
+        <div style={{background:"#FFFEF2"}}>
             <div className="navibar">
                 <h1 className="logoHeader">Pet Vet app</h1>
                 <div>
-                <input className="searchBar"></input>
+                <input placeholder="klinik ara" className="searchBar"></input>
                 <button className="searchButton">Ara</button>
                 </div>
                 <div onClick={()=>setDropdownVisible(!dropdownVisible)} onBlur={()=>setDropdownVisible(false)} className="profileField">
@@ -32,8 +34,15 @@ function MainPage() {
                 <Link to="/"><div onClick={logoutHandler} className="dropdownItem">Çıkış</div></Link>
             </div>
 
+            
+            {
+               user.firstName&&<div>
+                   <button className="newPostButton">Yeni gönderi oluştur</button>
+               </div>}
            {
-               user.firstName&& <Map
+               user.firstName&& <div className="googleMapField">
+               <h3 style={{margin:0, padding:"1em"}}>Yakınındaki veterinerleri gör</h3>
+               <Map
             isMarkerShown
             lat={Number(user.latitude)}
             long={Number(user.longitude)}
@@ -41,19 +50,23 @@ function MainPage() {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={
               <div
-                style={{
-                  height: `400px`,
-                  width: `400px`,
-                  position: "absolute",
-                  right: "45em",
-                  top: "6em",
-                }}
+                className="googleMap"
               />
             }
             mapElement={<div style={{ height: `100%` }} />}
           />
+               </div>
            }
-        </div>
+
+           <div>
+                <Post></Post>
+                <Post></Post>
+                <Post></Post>
+              </div>
+              
+
+           
+           </div>
     )
 }
 
