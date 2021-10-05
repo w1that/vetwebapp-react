@@ -3,28 +3,9 @@ import { useMediaQuery } from "react-responsive";
 import { Link, useHistory } from "react-router-dom";
 import { OwnerService } from "../api/ownerService";
 import { VetService } from "../api/vetService";
-import Map from "../components/Map";
 
 function SignupPage() {
-    {/* <Map
-            isMarkerShown
-            lat={Number(latitude)}
-            long={Number(longitude)}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDhnGNihMjkuJjLpo4HTcGfwuGn8frXPt4`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={
-              <div
-                style={{
-                  height: `400px`,
-                  width: `400px`,
-                  position: "absolute",
-                  right: "45em",
-                  top: "6em",
-                }}
-              />
-            }
-            mapElement={<div style={{ height: `100%` }} />}
-          /> */}
+
 
   const isDesktop = useMediaQuery({
     query: "(min-width: 1227px)",

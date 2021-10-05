@@ -11,20 +11,6 @@ export class OwnerService{
         return response;
     }
 
-    async login(owner){
-        let owners = null
-        this.getAll().then(response=>{
-            response.data.data.forEach(element => {
-                if(element.username==owner.username && element.password == owner.password){
-                    console.log("yes")
-                    return true
-                }
-            });
-        })
-        console.log("no")
-        return false
-    }
-
     async getByUsername(username){
         const response =  await axios.get(`http://localhost:8080/v1/owners/owner/username/?username=${username}`);
         return response

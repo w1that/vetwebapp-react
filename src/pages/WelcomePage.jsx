@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { OwnerService } from "../api/ownerService";
 import { VetService } from "../api/vetService";
+import { setCurrentUser } from "../redux/userSlice";
 
 function WelcomePage() {
   const isDesktop = useMediaQuery({
@@ -14,6 +16,9 @@ function WelcomePage() {
   const [selectedUserType, setSelectedUserType] = useState(0);
 
   const history = useHistory();
+  const dispatch = useDispatch()
+
+
   function setOwnerOption() {
     setUsername("");
     setPassword("");
@@ -35,18 +40,39 @@ function WelcomePage() {
         const owner = {username:username, password:password}
         const vet = {username:username, password:password}
       if(selectedUserType==0){
-        if(ownerService.login(owner)){
-            ownerService.getByUsername(username).then(response=>console.log(response.data.data))
-            toast("başarıyla giriş yaptın")
-            history.push("/anasayfa")
-        } 
+          ownerService.getByUsername(username).then(response=>{
+            const owner = response.data.data
+            if(owner !=null ){
+              if(owner.password==password){
+                console.log(owner)
+                dispatch(setCurrentUser(owner))
+                toast("başarıyla giriş yaptın")
+                history.push("/mainpage")
+              }
+              else{
+                toast("böyle bir kullanıcı bulunamadı")
+              }
+            }else{
+              toast("böyle bir kullanıcı bulunamadı")
+            }
+          })
       }
       if(selectedUserType==1){
-        if(vetService.login(vet)){
-            vetService.getByUsername(username).then(response=>console.log(response.data.data))
-            toast("başarıyla giriş yaptın")
-            history.push("/anasayfa")
-        } 
+        vetService.getByUsername(username).then(response=>{
+          const vet = response.data.data
+          if(vet !=null ){
+            if(vet.password==password){
+              dispatch(setCurrentUser(vet))
+              toast("başarıyla giriş yaptın")
+              history.push("/mainpage")
+            }
+            else{
+              toast("böyle bir kullanıcı bulunamadı")
+            }
+          }else{
+            toast("böyle bir kullanıcı bulunamadı")
+          }
+        })
       }
   }
 

@@ -4,6 +4,7 @@ import './App.css';
 import SignupPage from './pages/SignupPage';
 import WelcomePage from './pages/WelcomePage';
 import 'react-toastify/dist/ReactToastify.css';
+import MainPage from './pages/MainPage';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <ToastContainer />
         <Route exact path="/"><WelcomePage></WelcomePage></Route>
         <Route path="/signup"><SignupPage></SignupPage></Route>
+        <Route path="/mainpage"><MainPage></MainPage></Route>
     </div>
   );
 }
