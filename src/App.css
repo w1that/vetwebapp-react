@@ -429,11 +429,12 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
 
 .postImage{
   width: 100%;
+  border-radius: 10px;
 }
 
 .postDescription{
-  padding: 1em;
-  margin: 1em 1em 0px 1em;
+  padding: 0 1em 1em 1em;
+  margin-top: 1em;
   text-align: left;
   border-radius: 1em;
   font-size: 18px;
@@ -463,6 +464,26 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
   transition: 0.3s;
 }
 
+.postFooter{
+  display: flex;
+  padding: 0 1em 0 1em;
+  background-color: #f0efe0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  
+}
+.postOwnerField{
+  display: flex;
+  align-items: center;
+}
+
+.postOwnerImage{
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  padding: 1em;
+}
+
 
 @media only screen and (max-width: 1000px) {
   .newPostButton{
@@ -475,12 +496,10 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
     width: 80%;
   }
 
-  .postImage{
-    
-  }
 
   .postDescription{
-
+    margin: 0;
+    margin-top: 1em;
   }
   .searchBar{
     height: 1.5em;
@@ -527,10 +546,12 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
     width: 100%;
   }
   .googleMapField{
+    width: 88%;
     position: relative;
     margin-top: 1em;
     left: 0;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px;
   }
 } 

@@ -11,6 +11,7 @@ import Post from '../components/Post';
 function MainPage() {
     const user = useSelector(state => state.user.currentUser)
     
+  const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
     const dispatch = useDispatch()
     const [dropdownVisible, setDropdownVisible] = useState(false)
     function logoutHandler(){
@@ -57,6 +58,7 @@ function MainPage() {
           />
                </div>
            }
+           {isMobile&&<h3>Gönderiler</h3>}
 
            <div>
                 <Post></Post>
