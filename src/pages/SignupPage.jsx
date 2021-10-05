@@ -6,6 +6,26 @@ import { VetService } from "../api/vetService";
 import Map from "../components/Map";
 
 function SignupPage() {
+    {/* <Map
+            isMarkerShown
+            lat={Number(latitude)}
+            long={Number(longitude)}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDhnGNihMjkuJjLpo4HTcGfwuGn8frXPt4`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={
+              <div
+                style={{
+                  height: `400px`,
+                  width: `400px`,
+                  position: "absolute",
+                  right: "45em",
+                  top: "6em",
+                }}
+              />
+            }
+            mapElement={<div style={{ height: `100%` }} />}
+          /> */}
+
   const isDesktop = useMediaQuery({
     query: "(min-width: 1227px)",
   });
@@ -120,25 +140,7 @@ function SignupPage() {
     <div>
       <div className="backgroundDiv">
        
-          <Map
-            isMarkerShown
-            lat={Number(latitude)}
-            long={Number(longitude)}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDhnGNihMjkuJjLpo4HTcGfwuGn8frXPt4`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={
-              <div
-                style={{
-                  height: `400px`,
-                  width: `400px`,
-                  position: "absolute",
-                  right: "45em",
-                  top: "6em",
-                }}
-              />
-            }
-            mapElement={<div style={{ height: `100%` }} />}
-          />
+          
         
         <div
           className={
@@ -151,16 +153,20 @@ function SignupPage() {
             <div className="userSelectTab">
               <h3
                 onClick={setOwnerOption}
-                className={`welcomepageFont ${
+                className={isDesktop&&`welcomepageFont ${
                   selectedUserType == 0 ? "selectedOption" : "selectOption"
+                }`|| isMobile&&`welcomepageFont ${
+                  selectedUserType == 0 ? "selectedMobileOption" : "selectMobileOption"
                 }`}
               >
                 hayvan sahibi
               </h3>
               <h3
                 onClick={setVetOption}
-                className={`welcomepageFont ${
+                className={isDesktop&&`welcomepageFont ${
                   selectedUserType == 1 ? "selectedOption" : "selectOption"
+                }`|| isMobile&&`welcomepageFont ${
+                  selectedUserType == 1 ? "selectedMobileOption" : "selectMobileOption"
                 }`}
               >
                 veteriner
@@ -171,7 +177,7 @@ function SignupPage() {
               {selectedUserType == 0 && (
                 <div>
                   <input
-                    className="signUpPageInput welcomepageFont"
+                    className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                     placeholder="isim"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -181,7 +187,7 @@ function SignupPage() {
               {selectedUserType == 0 && (
                 <div>
                   <input
-                    className="signUpPageInput welcomepageFont"
+                    className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                     placeholder="soyisim"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -191,7 +197,7 @@ function SignupPage() {
               {selectedUserType == 1 && (
                 <div>
                   <input
-                    className="signUpPageInput welcomepageFont"
+                    className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                     placeholder="klinik ismi"
                     value={clinicName}
                     onChange={(e) => setClinicName(e.target.value)}
@@ -200,7 +206,7 @@ function SignupPage() {
               )}
               <div>
                 <input
-                  className="signUpPageInput welcomepageFont"
+                  className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                   placeholder="kullanıcı adı"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -208,7 +214,7 @@ function SignupPage() {
               </div>
               <div>
                 <input
-                  className="signUpPageInput welcomepageFont"
+                  className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                   placeholder="e-posta"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -216,7 +222,7 @@ function SignupPage() {
               </div>
               <div>
                 <input
-                  className="signUpPageInput welcomepageFont"
+                  className={isMobile&&`signUpPageMobileInput welcomepageFont`|| isDesktop&&`signUpPageInput welcomepageFont`}
                   placeholder="şifre"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

@@ -64,16 +64,20 @@ function WelcomePage() {
             <div className="userSelectTab">
               <h3
                 onClick={setOwnerOption}
-                className={`welcomepageFont ${
+                className={isDesktop&&`welcomepageFont ${
                   selectedUserType == 0 ? "selectedOption" : "selectOption"
+                }`|| isMobile&&`welcomepageFont ${
+                  selectedUserType == 0 ? "selectedMobileOption" : "selectMobileOption"
                 }`}
               >
                 hayvan sahibi
               </h3>
               <h3
                 onClick={setVetOption}
-                className={`welcomepageFont ${
+                className={isDesktop&&`welcomepageFont ${
                   selectedUserType == 1 ? "selectedOption" : "selectOption"
+                }`|| isMobile&&`welcomepageFont ${
+                  selectedUserType == 1 ? "selectedMobileOption" : "selectMobileOption"
                 }`}
               >
                 veteriner
