@@ -39,6 +39,29 @@
   left: 1.3em;
 }
 
+.blurredFieldSignUpMobile{
+  width: 90%;
+  height: 94%;
+  background: linear-gradient(114.84deg, rgba(255, 255, 255, 0.35) 3.61%, rgba(255, 255, 255, 0.604982) 42.59%, rgba(255, 255, 255, 0) 102.29%);
+  backdrop-filter: blur(5px);
+  border-radius: 34px;
+  position:absolute;
+  top: 1em;
+  left: 1.3em;
+}
+
+.blurredFieldSignUpDesktop{
+  position: absolute;
+  width: 500px;
+  height: 760px;
+  right: 9%;
+  top: 10%;
+  background: linear-gradient(114.84deg, rgba(255, 255, 255, 0.35) 3.61%, rgba(255, 255, 255, 0.604982) 42.59%, rgba(255, 255, 255, 0) 102.29%);
+  backdrop-filter: blur(5px);
+  border-radius: 34px;
+ 
+} 
+
 .whiteFieldInBlurred{
   position: absolute;
 width: 100%;
@@ -93,6 +116,28 @@ border-radius: 34px;
  text-align: center;
  transition: 0.3s;
 }
+
+.signUpPageInput{
+  width: 80%;
+  border: 2px solid rgba(0, 0, 0, 0.2) ;
+  height: 2em;
+  padding: 10px;
+  margin-bottom: 1em;
+ border-radius: 20px;
+ font-size: 16px;
+ text-align: center;
+ transition: 0.3s;
+}
+
+.signUpPageInput:hover{
+  width: 85%;
+  transition: 0.3s;
+}
+.signUpPageInput:focus{
+  width: 85%;
+  transition: 0.3s;
+}
+
 .welcomePageInput:hover{
   width: 85%;
   transition: 0.3s;
@@ -115,14 +160,68 @@ border-radius: 34px;
  text-align: center;
  transition: 0.3s;
 }
-
 .welcomepageButton:hover{
   background-color: rgb(201, 140, 84);
   cursor: pointer;
   transition: 0.3s;
 }
+
+.signUpPageButtonDesktop{
+  width: 45%;
+  border: 0px;
+  background-color: #d8995e;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+ border-radius: 20px;
+ font-size: 20px;
+ text-align: center;
+ transition: 0.3s;
+}
+.signUpPageButtonDesktop:hover{
+  background-color: rgb(201, 140, 84);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signUpPageButtonMobile{
+  width: 45%;
+  border: 0px;
+  position: absolute;
+  bottom: 3em;
+  left: 5em;
+  background-color: #d8995e;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+ border-radius: 20px;
+ font-size: 20px;
+ text-align: center;
+ transition: 0.3s;
+}
+.signUpPageButtonMobile:hover{
+  background-color: rgb(201, 140, 84);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 .registerMessage{
   margin-top: 50px;
+  font-size: large;
+  opacity: 80%;
+  letter-spacing: 1px;
+}
+
+.signUpPageMessageMobile{
+  font-size: large;
+  opacity: 80%;
+  letter-spacing: 1px;
+  position: absolute;
+  left: 6em;
+  bottom: 1px;
+}
+
+.signUpPageMessageDesktop{
   font-size: large;
   opacity: 80%;
   letter-spacing: 1px;
@@ -135,6 +234,20 @@ border-radius: 34px;
   transition: 0.1s;
 }
 .registerHereLabel:hover{
+  cursor: pointer;
+  color: rgb(116, 69, 0);
+  transition: 0.1s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.loginHereLabel{
+  color: rgb(168, 101, 0);
+  opacity: 100%;
+  font-weight: bold;
+  transition: 0.1s;
+}
+.loginHereLabel:hover{
   cursor: pointer;
   color: rgb(116, 69, 0);
   transition: 0.1s;

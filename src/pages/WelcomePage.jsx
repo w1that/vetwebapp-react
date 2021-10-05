@@ -1,50 +1,120 @@
-import React, { useState } from 'react'
-import { useMediaQuery } from 'react-responsive';
+import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { OwnerService } from "../api/ownerService";
+import { VetService } from "../api/vetService";
 
 function WelcomePage() {
-    const isDesktop = useMediaQuery({
-        query: "(min-width: 1227px)",
-      });
-      const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1227px)",
+  });
+  const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
 
-    const [selectedUserType, setSelectedUserType] = useState(0)
+  const [selectedUserType, setSelectedUserType] = useState(0);
 
-    function setOwnerOption(){
-        setSelectedUserType(0)      // 0 means selected tab is owner 
-        console.log(selectedUserType)
-    } 
+  const history = useHistory();
+  function setOwnerOption() {
+    setUsername("");
+    setPassword("");
+    setSelectedUserType(0); // 0 means selected tab is owner
+  }
 
-    function setVetOption(){
-        setSelectedUserType(1)        // 1 means selected tab is vet
-        console.log(selectedUserType)
-    } 
+  function setVetOption() {
+    setUsername("");
+    setPassword("");
+    setSelectedUserType(1); // 1 means selected tab is vet
+  }
 
-    return (
-        <div>
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-          <div className="backgroundDiv" >
-            <div className={isMobile&&"blurredFieldMobile" || isDesktop&& "blurredFieldDesktop"}>
-            <h1 className="welcomepageFont welcomepageHeader">VET WEB APP</h1>
-                <div className="whiteFieldInBlurred">
-                    <div className="userSelectTab">
-                        <h3 onClick={setOwnerOption} className={`welcomepageFont ${selectedUserType==0?'selectedOption':'selectOption'}`}>hayvan sahibi</h3>
-                        <h3 onClick={setVetOption} className={`welcomepageFont ${selectedUserType==1?'selectedOption':'selectOption'}`}>veteriner</h3>
-                    </div>
+  function loginHandler(){
+      const ownerService = new OwnerService()
+      const vetService = new VetService()
+        const owner = {username:username, password:password}
+        const vet = {username:username, password:password}
+      if(selectedUserType==0){
+        if(ownerService.login(owner)){
+            ownerService.getByUsername(username).then(response=>console.log(response.data.data))
+            toast("başarıyla giriş yaptın")
+            history.push("/anasayfa")
+        } 
+      }
+      if(selectedUserType==1){
+        if(vetService.login(vet)){
+            vetService.getByUsername(username).then(response=>console.log(response.data.data))
+            toast("başarıyla giriş yaptın")
+            history.push("/anasayfa")
+        } 
+      }
+  }
 
-                    <div className="formField">
-                        <div><input className="welcomePageInput welcomepageFont" placeholder="kullanıcı adı"></input></div>
-                        <div><input className="welcomePageInput welcomepageFont" placeholder="şifre"></input></div>
-                        <button className="welcomepageButton welcomepageFont">Giriş Yap</button>
-                        <p className="registerMessage welcomepageFont">Henüz bir hesabın yoksa <label className="welcomepageFont registerHereLabel">buraya</label> tıklayarak kayıt ol!</p>
+  return (
+    <div>
+      <div className="backgroundDiv">
+        <div
+          className={
+            (isMobile && "blurredFieldMobile") ||
+            (isDesktop && "blurredFieldDesktop")
+          }
+        >
+          <h1 className="welcomepageFont welcomepageHeader">VET WEB APP</h1>
+          <div className="whiteFieldInBlurred">
+            <div className="userSelectTab">
+              <h3
+                onClick={setOwnerOption}
+                className={`welcomepageFont ${
+                  selectedUserType == 0 ? "selectedOption" : "selectOption"
+                }`}
+              >
+                hayvan sahibi
+              </h3>
+              <h3
+                onClick={setVetOption}
+                className={`welcomepageFont ${
+                  selectedUserType == 1 ? "selectedOption" : "selectOption"
+                }`}
+              >
+                veteriner
+              </h3>
+            </div>
 
-                    </div>
-
-                </div>
+            <div className="formField">
+              <div>
+                <input
+                  className="welcomePageInput welcomepageFont"
+                  placeholder="kullanıcı adı"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                ></input>
+              </div>
+              <div>
+                <input
+                  className="welcomePageInput welcomepageFont"
+                  placeholder="şifre"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                ></input>
+              </div>
+              <button onClick={loginHandler} className="welcomepageButton welcomepageFont">
+                Giriş Yap
+              </button>
+              <p className="registerMessage welcomepageFont">
+                Henüz bir hesabın yoksa{" "}
+                <Link to="/signup">
+                  <label className="welcomepageFont registerHereLabel">
+                    buraya
+                  </label>
+                </Link>{" "}
+                tıklayarak kayıt ol!
+              </p>
             </div>
           </div>
-            
-          </div>
-    )
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default WelcomePage
+export default WelcomePage;

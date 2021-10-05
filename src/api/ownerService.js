@@ -1,0 +1,32 @@
+import axios from "axios";
+
+export class OwnerService{
+   async register(owner){
+        const response = await axios.post(`http://localhost:8080/v1/owners/?email=${owner.email}&firstName=${owner.firstName}&lastName=${owner.lastName}&latitude=${owner.latitude}&longitude=${owner.longitude}&password=${owner.password}&username=${owner.username}`)   //default lat and long is 1,1
+        return response;
+    }
+
+    async getAll(){
+        const response = await axios.get("http://localhost:8080/v1/owners/")
+        return response;
+    }
+
+    async login(owner){
+        let owners = null
+        this.getAll().then(response=>{
+            response.data.data.forEach(element => {
+                if(element.username==owner.username && element.password == owner.password){
+                    console.log("yes")
+                    return true
+                }
+            });
+        })
+        console.log("no")
+        return false
+    }
+
+    async getByUsername(username){
+        const response =  await axios.get(`http://localhost:8080/v1/owners/owner/username/?username=${username}`);
+        return response
+    }
+}
