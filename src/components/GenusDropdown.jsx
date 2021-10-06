@@ -7,7 +7,7 @@ function GenusDropdown() {
   ];
 
   const [dropdown, setDropdown] = useState(false);
-  const [selectedItem, setSelectedItem] = useState({ name: "genus" });
+  const [selectedItem, setSelectedItem] = useState({ name: "tür" });
 
   return (
     <div className="genusDropdown">

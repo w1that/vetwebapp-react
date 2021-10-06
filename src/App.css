@@ -496,7 +496,6 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
 
 .newPostSchema{
   width: 50%;
-  height: 899px;
   margin:3em auto 0 auto;
   padding: 1em;
   border-radius: 24px;
@@ -586,12 +585,77 @@ transition: 0.3s;
   transition: 0.3s;
 }
 
+.selectedImages{
+  display: flex;
+  justify-content: space-around;
+}
+
+.newPostHeader{
+  margin-left: 1em;
+  text-align: left;
+}
+
+.publishPostButton{
+  border: 0px;
+  width: 40%;
+  left: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 1em;
+  background-color: #7da15a;
+  padding: 0.5em;
+  border-radius: 0.6em;
+  font-size: 20px;
+  transition: 0.3s;
+  color: white;
+}
+.publishPostButton:hover{
+  background-color: #6a8a4b;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1000px) {
+  .uploadImageButton{
+    width: 400px;
+  }
+  .newPostHeader{
+    margin: 0px;
+  }
+  .newPostSchema{
+    width: 90%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+
+  .genusDropdown{
+    width: 9em;
+  }
+
+  .ageInput{
+    width: 2em;
+  }
+  .diseaseObserve{
+    height: 1.2em;
+    width: 80%;
+    
+  }
+  .diseaseDescription{
+    width: 80%;
+  }
   .newPostButton{
     position: fixed;
     bottom: 0.7rem;
     right: 1rem;
     z-index: 2;
+  }
+  #myFile.uploadImageButton{
+    width: 100%;
+  }
+  .selectedImages{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .post{
