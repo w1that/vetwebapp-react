@@ -17,9 +17,9 @@ function MainPage() {
   });
   const dispatch = useDispatch();
   const [mapVisibility, setMapVisibility] = useState(true);
-  useEffect(() => {
-    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("currentUser"))));
-  }, []);
+  // useEffect(() => {      deneme versiyonu
+  //   dispatch(setCurrentUser(JSON.parse(localStorage.getItem("currentUser"))));
+  // }, []);
 
   return (
     <div style={{ background: "#FFFEF2" }}>
