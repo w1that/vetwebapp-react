@@ -10,13 +10,20 @@ import Post from '../components/Post';
 
 function MainPage() {
     const user = useSelector(state => state.user.currentUser)
-    
-  const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
+    const history =   useHistory();
+    const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
     const dispatch = useDispatch()
     const [dropdownVisible, setDropdownVisible] = useState(false)
     function logoutHandler(){
         dispatch(setCurrentUser(null))
+        localStorage.removeItem("currentUser")
+        history.push("/")
     }
+    useEffect(() => {
+      dispatch(setCurrentUser(JSON.parse(localStorage.getItem('currentUser'))))
+    }, [])
+    
+
     return (
         <div style={{background:"#FFFEF2"}}>
             <div className="navibar">
@@ -38,7 +45,7 @@ function MainPage() {
             
             {
                user.firstName&&<div>
-                   <button className="newPostButton">Yeni gönderi oluştur</button>
+                   <Link to="/new-post"><button className="newPostButton">Yeni gönderi oluştur</button></Link>
                </div>}
            {
                user.firstName&& <div className="googleMapField">

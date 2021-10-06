@@ -15,6 +15,7 @@ function Post() {
       ></img>
 
       <div className="postDescription">
+      <h3>Hastalık başlığı</h3> 
         <p>
           Easy to set up for real, you can make it work in less than 10sec!
           Super easy to customize RTL support Swipe to close 👌 Can choose swipe

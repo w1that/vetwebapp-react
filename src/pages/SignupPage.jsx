@@ -207,6 +207,7 @@ function SignupPage() {
                   placeholder="şifre"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
                 ></input>
               </div>
 

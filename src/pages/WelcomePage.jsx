@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link, useHistory } from "react-router-dom";
@@ -18,6 +18,11 @@ function WelcomePage() {
   const history = useHistory();
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if(localStorage.getItem('currentUser')){
+      history.push("/mainPage")
+    }
+  }, [])
 
   function setOwnerOption() {
     setUsername("");
@@ -47,6 +52,7 @@ function WelcomePage() {
                 console.log(owner)
                 dispatch(setCurrentUser(owner))
                 toast("başarıyla giriş yaptın")
+                localStorage.setItem('currentUser', JSON.stringify(owner))
                 history.push("/mainpage")
               }
               else{
@@ -64,6 +70,7 @@ function WelcomePage() {
             if(vet.password==password){
               dispatch(setCurrentUser(vet))
               toast("başarıyla giriş yaptın")
+              localStorage.setItem('currentUser', JSON.stringify(vet))
               history.push("/mainpage")
             }
             else{
@@ -124,6 +131,7 @@ function WelcomePage() {
                   className="welcomePageInput welcomepageFont"
                   placeholder="şifre"
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
                   value={password}
                 ></input>
               </div>
