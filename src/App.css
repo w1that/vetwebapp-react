@@ -505,11 +505,17 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
 .genusButton{
   border: 0px;
   width: 100%;
-  background-color: #b3b3b3;
+  background-color: #ffffff;
   padding: 0.5em;
   border-radius: 0.6em;
   font-size: 20px;
+  transition: 0.3s;
 }
+
+.genusButton:hover{
+  background-color: #e4e4e4;
+}
+
 .genusDropdownMenu{
   margin-top: 3px;
   background-color: #e4e4e4;
@@ -518,7 +524,7 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
   border: 1px solid black;
   margin-top: 1px;
   transition: 0.05s;
-  height: 110px;
+  max-height: 110px;
   overflow: auto;
 }
 .genusDropdown{
@@ -527,6 +533,7 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
 .genusItem{
   letter-spacing: 1px;
 font-size: 20px;
+padding: 0.2em 0 0.2em 0;
 }
 
 .genusItem:hover{
@@ -536,6 +543,48 @@ border-radius: 0.6em;
 transition: 0.3s;
 }
 
+.ageInput{
+  border: 0px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 0.6em;
+  font-size: 20px;
+  color: black;
+  width: 10%;
+  transition: 0.3s;
+}
+
+.diseaseObserve{
+  border: 0px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 0.6em;
+  font-size: 20px;
+  width: 94%;
+  margin-top: 1em;
+  color: black;
+  height: 2em;
+  resize: none;
+}
+
+.diseaseDescription{
+  border: 0px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 0.6em;
+  font-size: 20px;
+  width: 94%;
+  margin-top: 1em;
+  color: black;
+  height: 7em;
+  resize: none;
+}
+
+.uploadImageButton{
+  border: 0px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 0.6em;
+  font-size: 20px;
+  color: black;
+  transition: 0.3s;
+}
 
 @media only screen and (max-width: 1000px) {
   .newPostButton{
