@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage';
 import WelcomePage from './pages/WelcomePage';
 import 'react-toastify/dist/ReactToastify.css';
 import MainPage from './pages/MainPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/"><WelcomePage></WelcomePage></Route>
         <Route path="/signup"><SignupPage></SignupPage></Route>
         <Route path="/mainpage"><MainPage></MainPage></Route>
+        <Route path="/new-post"><CreatePostPage></CreatePostPage></Route>
     </div>
   );
 }

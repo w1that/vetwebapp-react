@@ -312,13 +312,17 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
   align-items: center;
 }
 
-
+.routerLinkRemove{
+  text-decoration: none;
+}
 
 .logoHeader{
   margin-left: 1em;
   color: black;
   transition: 0.5s;
+  text-decoration: none;
 }
+
 .logoHeader:hover{
   margin-left: 1em;
   opacity: 70%;
@@ -488,6 +492,48 @@ background: linear-gradient(90deg, rgba(255,232,114,1) 0%, rgb(255, 199, 86) 100
 .seeVetsText{
   margin: 0px;
   padding: 1em;
+}
+
+.newPostSchema{
+  width: 50%;
+  height: 899px;
+  margin:3em auto 0 auto;
+  padding: 1em;
+  border-radius: 24px;
+  background-color: #ecebd9;
+}
+.genusButton{
+  border: 0px;
+  width: 100%;
+  background-color: #b3b3b3;
+  padding: 0.5em;
+  border-radius: 0.6em;
+  font-size: 20px;
+}
+.genusDropdownMenu{
+  margin-top: 3px;
+  background-color: #e4e4e4;
+  border-radius: 0.6em;
+  margin: 0 auto 0 auto;
+  border: 1px solid black;
+  margin-top: 1px;
+  transition: 0.05s;
+  height: 110px;
+  overflow: auto;
+}
+.genusDropdown{
+  width: 15em;
+}
+.genusItem{
+  letter-spacing: 1px;
+font-size: 20px;
+}
+
+.genusItem:hover{
+  background-color: #b3b3b3;
+cursor: default;
+border-radius: 0.6em;
+transition: 0.3s;
 }
 
 
