@@ -12,8 +12,12 @@ function MainPage() {
     const user = useSelector(state => state.user.currentUser)
     const history =   useHistory();
     const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
+    const isDesktop = useMediaQuery({
+      query: "(min-width: 1227px)",
+    });
     const dispatch = useDispatch()
     const [dropdownVisible, setDropdownVisible] = useState(false)
+    const [mapVisibility, setMapVisibility] = useState(true)
     function logoutHandler(){
         dispatch(setCurrentUser(null))
         localStorage.removeItem("currentUser")
@@ -28,18 +32,23 @@ function MainPage() {
         <div style={{background:"#FFFEF2"}}>
             <div className="navibar">
                 <h1 className="logoHeader">Pet Vet app</h1>
-                <div>
+                {user.firstName&& <div>
                 <input placeholder="klinik ara" className="searchBar"></input>
                 <button className="searchButton">Ara</button>
-                </div>
+                </div>}
+                
                 <div onClick={()=>setDropdownVisible(!dropdownVisible)} onBlur={()=>setDropdownVisible(false)} className="profileField">
                 <img className="naviImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQthHVYX7uaGAQbJifvkv4GskIjvp14b9KIAQ&usqp=CAU"></img>
                 <h3 className="usernameText">{user.username}</h3>
                 </div>
             </div>
-            <div style={dropdownVisible?{visibility:"visible"}:{visibility:"hidden"}} className="dropdownMenu">
+            <div style={dropdownVisible?{visibility:"visible"}:{visibility:"hidden"}} className="dropdownMenu" >
                 <div className="dropdownItem">Profil</div>
                 <Link to="/"><div onClick={logoutHandler} className="dropdownItem">Çıkış</div></Link>
+            </div>
+
+            <div className="mobileBottomBar">
+
             </div>
 
             
@@ -48,9 +57,9 @@ function MainPage() {
                    <Link to="/new-post"><button className="newPostButton">Yeni gönderi oluştur</button></Link>
                </div>}
            {
-               user.firstName&& <div className="googleMapField">
-               <h3 style={{margin:0, padding:"1em"}}>Yakınındaki veterinerleri gör</h3>
-               <Map
+               user.firstName&& <div  className="googleMapField">
+               <h3 >Yakınındaki veterinerleri gör {isMobile&&<label onClick={()=>setMapVisibility(!mapVisibility)} style={{fontWeight:"bolder"}}> x</label>}</h3> 
+               <Map 
             isMarkerShown
             lat={Number(user.latitude)}
             long={Number(user.longitude)}
@@ -58,10 +67,10 @@ function MainPage() {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={
               <div
-                className="googleMap"
+                className={isDesktop&&'googleMap' || isMobile&&mapVisibility?'googleMap':'googleMapHidden'}
               />
             }
-            mapElement={<div style={{ height: `100%` }} />}
+            mapElement={<div  style={{ height: `100%` }} />}
           />
                </div>
            }
