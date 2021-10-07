@@ -15,4 +15,18 @@ export class OwnerService{
         const response =  await axios.get(`http://localhost:8080/v1/owners/owner/username/?username=${username}`);
         return response
     }
+
+    async uploadProfilePic(user,formData){
+        const response = await axios.post("http://localhost:8080/v1/owner-images/upload/?id="+user.id, formData, {
+            headers:{
+                'content-type':'multipart/form-data'
+            }
+        })
+        return response
+    }
+
+    async removeProfilePic(id){
+        const response = await axios.delete("http://localhost:8080/v1/owner-images/owner-image?id="+id)
+        return response
+    }
 }

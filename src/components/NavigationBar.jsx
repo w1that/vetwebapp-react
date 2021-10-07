@@ -26,13 +26,13 @@ function NavigationBar() {
                 }
                 
                 <div onClick={()=>setDropdownVisible(!dropdownVisible)} onBlur={()=>setDropdownVisible(false)} className="profileField">
-                <img alt="alt" className="naviImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQthHVYX7uaGAQbJifvkv4GskIjvp14b9KIAQ&usqp=CAU"></img>
+                <img alt="alt" className="naviImage" src={user.image?user.image.imagePath:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png'}></img>
                 <h3 className="usernameText">{user.username}</h3>
                 </div>
                 
             </div>
             <div style={dropdownVisible?{visibility:"visible"}:{visibility:"hidden"}} className="dropdownMenu" >
-                <div className="dropdownItem">Profil</div>
+                <Link to={`/profile/${user.username}`}><div className="dropdownItem">Profil</div></Link>
                 <Link className="routerLinkRemove" to="/"><div onClick={logoutHandler} className="dropdownItem">Çıkış</div></Link>
             </div>
         </div>

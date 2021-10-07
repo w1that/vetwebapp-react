@@ -630,11 +630,46 @@ transition: 0.3s;
   scroll-behavior: smooth;
 }
 
+.profileContainer{
+  border: 1px solid red;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 500px;
+  padding: 2em;
+}
+
+.profileInnerContainer{
+  border: 1px solid red;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 2em;
+}
+
+.profilePageImage{
+  width: 40%;
+  
+  border-radius: 40%;
+  border:10px solid black;
+}
+
+.profilePageImage:hover{
+  opacity: 80%;
+  cursor: pointer;
+}
 
 
 @media only screen and (max-width: 1000px) {
+  .profilePageImage{
+    width: 90%;
+  
+  border-radius:30%;
+  border:4px solid black;
+  }
+
   .uploadImageButton{
-    width: 400px;
+    width: 200px;
   }
   .newPostHeader{
     margin: 0px;

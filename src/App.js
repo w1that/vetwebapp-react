@@ -6,6 +6,7 @@ import WelcomePage from './pages/WelcomePage';
 import 'react-toastify/dist/ReactToastify.css';
 import MainPage from './pages/MainPage';
 import CreatePostPage from './pages/CreatePostPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup"><SignupPage></SignupPage></Route>
         <Route path="/mainpage"><MainPage></MainPage></Route>
         <Route path="/new-post"><CreatePostPage></CreatePostPage></Route>
+        <Route path="/profile/:username"><ProfilePage></ProfilePage></Route>
     </div>
   );
 }
