@@ -11,8 +11,7 @@ import { getPets } from "../redux/petSlice";
 import { nanoid } from "@reduxjs/toolkit";
 
 function MainPage() {
-  const ownerService = new OwnerService()
-  const owners = useSelector(state => state.user.owners)
+  const owners = useSelector((state) => state.user.owners);
   const user = useSelector((state) => state.user.currentUser);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
@@ -21,41 +20,50 @@ function MainPage() {
   });
   const dispatch = useDispatch();
   const [mapVisibility, setMapVisibility] = useState(true);
-
-  useEffect(() => {    
-    ownerService.getByUsername(user.username).then((response)=>dispatch(setCurrentUser(response.data.data)))
-    console.log(user)
-  }, []);
+  useEffect(() => {
+    const ownerService = new OwnerService();
+    ownerService
+      .getByUsername(user.username)
+      .then((response) => dispatch(setCurrentUser(response.data.data)));
+  }, [dispatch,  user.username]);
 
   useEffect(() => {
-    dispatch(getPets())
-    dispatch(getOwners())
-  }, [])
+    dispatch(getPets());
+    dispatch(getOwners());
+  }, [dispatch]);
 
-  
-  
-  function newPostControlHandler(){
-    if(user.pets.length>0){
-      alert("Normal üyelik için yanlızca 1 adet post oluşturma hakkınız var. Premium üyeliğe geçiş yapabilirsiniz")
-  }else{
-    history.push("/new-post")
+  function newPostControlHandler() {
+    if (user.pets.length > 0) {
+      alert(
+        "Normal üyelik için yanlızca 1 adet post oluşturma hakkınız var. Premium üyeliğe geçiş yapabilirsiniz"
+      );
+    } else {
+      history.push("/new-post");
+    }
   }
-
-  
-  
-}
 
   return (
     <div style={{ background: "#FFFEF2" }}>
-     <Route exact path="/mainpage"> <NavigationBar></NavigationBar></Route>
+      <Route exact path="/mainpage">
+        {" "}
+        <NavigationBar></NavigationBar>
+      </Route>
 
       <div className="mobileBottomBar"></div>
 
       {user.firstName && (
         <div>
-          
-            <button onClick={newPostControlHandler} style={user.pets.length>0?{background:"#ff5c4a"}:{background:"green"}} className="newPostButton">Yeni gönderi oluştur</button>
-
+          <button
+            onClick={newPostControlHandler}
+            style={
+              user.pets.length > 0
+                ? { background: "#ff5c4a" }
+                : { background: "green" }
+            }
+            className="newPostButton"
+          >
+            Yeni gönderi oluştur
+          </button>
         </div>
       )}
       {user.firstName && (
@@ -94,9 +102,13 @@ function MainPage() {
       {isMobile && <h3>Gönderiler</h3>}
 
       <div>
-       {owners.map(owner=> owner.pets.map(pet=> <Post key={nanoid()} petOwner={owner} pet={pet}></Post>)
-       )}
-        
+        {[...owners]
+          .reverse()
+          .map((owner) =>
+            owner.pets.map((pet) => (
+              <Post key={nanoid()} petOwner={owner} pet={pet}></Post>
+            ))
+          )}
       </div>
     </div>
   );

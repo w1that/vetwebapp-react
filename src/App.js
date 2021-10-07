@@ -1,4 +1,4 @@
-import { Route, Router, Switch } from 'react-router';
+import { Route} from 'react-router';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import SignupPage from './pages/SignupPage';

@@ -22,7 +22,7 @@ function WelcomePage() {
     if(localStorage.getItem('currentUser')){
       history.push("/mainPage")
     }
-  }, [])
+  }, [history])
 
   function setOwnerOption() {
     setUsername("");
@@ -43,12 +43,11 @@ function WelcomePage() {
       const ownerService = new OwnerService()
       const vetService = new VetService()
 
-      if(selectedUserType==0){
+      if(selectedUserType===0){
           ownerService.getByUsername(username).then(response=>{
             const owner = response.data.data
             if(owner !=null ){
-              if(owner.password==password){
-                console.log(owner)
+              if(owner.password===password){
                 dispatch(setCurrentUser(owner))
                 toast("başarıyla giriş yaptın")
                 localStorage.setItem('currentUser', JSON.stringify(owner))
@@ -63,11 +62,11 @@ function WelcomePage() {
           })
       }
 
-      if(selectedUserType==1){
+      if(selectedUserType===1){
         vetService.getByUsername(username).then(response=>{
           const vet = response.data.data
           if(vet !=null ){
-            if(vet.password==password){
+            if(vet.password===password){
               dispatch(setCurrentUser(vet))
               toast("başarıyla giriş yaptın")
               localStorage.setItem('currentUser', JSON.stringify(vet))
@@ -97,21 +96,21 @@ function WelcomePage() {
             <div className="userSelectTab">
               <h3
                 onClick={setOwnerOption}
-                className={isDesktop&&`welcomepageFont ${
-                  selectedUserType == 0 ? "selectedOption" : "selectOption"
-                }`|| isMobile&&`welcomepageFont ${
-                  selectedUserType == 0 ? "selectedMobileOption" : "selectMobileOption"
-                }`}
+                className={(isDesktop&&`welcomepageFont ${
+                  selectedUserType === 0 ? "selectedOption" : "selectOption"
+                }`)|| (isMobile&&`welcomepageFont ${
+                  selectedUserType === 0 ? "selectedMobileOption" : "selectMobileOption"
+                }`)}
               >
                 hayvan sahibi
               </h3>
               <h3
                 onClick={setVetOption}
-                className={isDesktop&&`welcomepageFont ${
-                  selectedUserType == 1 ? "selectedOption" : "selectOption"
-                }`|| isMobile&&`welcomepageFont ${
-                  selectedUserType == 1 ? "selectedMobileOption" : "selectMobileOption"
-                }`}
+                className={(isDesktop&&`welcomepageFont ${
+                  selectedUserType === 1 ? "selectedOption" : "selectOption"
+                }`)|| (isMobile&&`welcomepageFont ${
+                  selectedUserType === 1 ? "selectedMobileOption" : "selectMobileOption"
+                }`)}
               >
                 veteriner
               </h3>

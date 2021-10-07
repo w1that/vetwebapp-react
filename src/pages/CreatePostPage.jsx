@@ -8,7 +8,7 @@ import DiseaseObserve from "../components/DiseaseObserve";
 import GenusDropdown from "../components/GenusDropdown";
 import PublishPost from "../components/PublishPost";
 import UploadedImages from "../components/UploadedImages";
-import { Route, useHistory } from "react-router";
+import {  useHistory } from "react-router";
 import { toast } from "react-toastify";
 
 function CreatePostPage() {
@@ -30,7 +30,7 @@ const [files, setFiles] = useState([]);
       description: description,
       disease: disease,
     });
-  }, [genus, age, description, disease]);
+  }, [genus, age, description, disease, pet]);
 
   useEffect(() => {
     if (user.pets.length > 0) {
@@ -39,7 +39,7 @@ const [files, setFiles] = useState([]);
       );
       history.push("/mainpage");
     }
-  }, []);
+  }, [history, user.pets.length]);
 
   function addPetHandler() {
     petService.add(genus, user, age, description, disease).then(()=>{
@@ -57,7 +57,6 @@ const [files, setFiles] = useState([]);
   function handleImagePreview(e) {
     setFiles([...files, e.target.files[0]]);
   }
-console.log(files)
   function fileUpload(file) {
     const formData = new FormData();
     formData.append("imageFile", file);
@@ -99,7 +98,7 @@ console.log(files)
           <DiseaseObserve></DiseaseObserve>
           <DiseaseDescription></DiseaseDescription>
           <input
-            disabled={files.length==5&&'true'}
+            disabled={files.length===5&&'true'}
             onChange={handleImagePreview}
             className="uploadImageButton"
             type="file"

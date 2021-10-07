@@ -9,8 +9,9 @@ function UploadedImages({files}) {
         
             {files.map(file=>{
                 if(file){
-                    return <img key={nanoid()} className="previewImage" style={{marginLeft:"1em"}} width="60px" src={URL.createObjectURL(file)}></img>
+                    return <img alt="alt" key={nanoid()} className="previewImage" style={{marginLeft:"1em"}} width="60px" src={URL.createObjectURL(file)}></img>
                 }
+                return '' 
             })}
         </div>
     )
