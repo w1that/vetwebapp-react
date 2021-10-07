@@ -7,8 +7,11 @@ import { setCurrentUser } from "../redux/userSlice";
 import Map from "../components/Map";
 import Post from "../components/Post";
 import NavigationBar from "../components/NavigationBar";
+import { OwnerService } from "../api/ownerService";
+import axios from "axios";
 
 function MainPage() {
+  const ownerService = new OwnerService()
   const user = useSelector((state) => state.user.currentUser);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
@@ -17,9 +20,20 @@ function MainPage() {
   });
   const dispatch = useDispatch();
   const [mapVisibility, setMapVisibility] = useState(true);
-  // useEffect(() => {      deneme versiyonu
-  //   dispatch(setCurrentUser(JSON.parse(localStorage.getItem("currentUser"))));
-  // }, []);
+
+  useEffect(() => {    
+    ownerService.getByUsername(user.username).then((response)=>dispatch(setCurrentUser(response.data.data)))
+  }, []);
+
+  
+  function newPostControlHandler(){
+    if(user.pets.length>0){
+      alert("Normal üyelik için yanlızca 1 adet post oluşturma hakkınız var. Premium üyeliğe geçiş yapabilirsiniz")
+  }else{
+    history.push("/new-post")
+  }
+  
+}
 
   return (
     <div style={{ background: "#FFFEF2" }}>
@@ -29,9 +43,9 @@ function MainPage() {
 
       {user.firstName && (
         <div>
-          <Link to="/new-post">
-            <button className="newPostButton">Yeni gönderi oluştur</button>
-          </Link>
+          
+            <button onClick={newPostControlHandler} style={user.pets.length>0&&{background:"#ff5c4a"}} className="newPostButton">Yeni gönderi oluştur</button>
+          
         </div>
       )}
       {user.firstName && (

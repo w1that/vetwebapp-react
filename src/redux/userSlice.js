@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name:"user",
     initialState:{
-        currentUser:{username:"username", password:"password", firstName:"firstname", lastName:"lastName"}
+        // currentUser:{username:"username", password:"password", firstName:"firstname", lastName:"lastName"}
+        currentUser:JSON.parse(localStorage.getItem("currentUser"))
     },
     reducers:{
         setCurrentUser :(state,action)=>{

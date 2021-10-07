@@ -1,8 +1,8 @@
 import React from 'react'
 
-function PublishPost() {
+function PublishPost({addPetHandler}) {
     return (
-        <button className="publishPostButton">Yayınla</button>
+        <button onClick={addPetHandler} className="publishPostButton">Yayınla</button>
     )
 }
 

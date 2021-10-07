@@ -1,8 +1,11 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { setDisease } from '../redux/petSlice'
 
 function DiseaseObserve() {
+    const dispatch = useDispatch()
     return (
-            <textarea maxLength={100} type="text" className="diseaseObserve" placeholder="gözlenen rahatsızlık"></textarea>
+            <textarea onChange={(e)=>dispatch(setDisease(e.target.value))} maxLength={100} type="text" className="diseaseObserve" placeholder="gözlenen rahatsızlık"></textarea>
        
     )
 }

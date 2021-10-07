@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { GenusService } from "../api/genusService";
+import { setGenus } from "../redux/petSlice";
 
 function GenusDropdown() {
-  const items = [
-    { id: 1, name: "kedi" },
-    { id: 2, name: "köpek" },
-  ];
+  const [genuses, setGenuses] = useState([])
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const genusService = new GenusService()
+    genusService.getAll().then(response=> setGenuses(response.data.data))
+  }, [])
 
   const [dropdown, setDropdown] = useState(false);
   const [selectedItem, setSelectedItem] = useState({ name: "tür" });
@@ -16,10 +21,11 @@ function GenusDropdown() {
       </button>
       {dropdown && (
         <div className="genusDropdownMenu">
-          {items.map((item) => (
+          {genuses.map((item) => (
             <div
               onClick={() => {
                 setSelectedItem(item);
+                dispatch(setGenus(item))
                 setDropdown(false);
               }}
               key={item.id}
