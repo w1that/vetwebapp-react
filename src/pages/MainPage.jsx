@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Route, useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import { setCurrentUser } from "../redux/userSlice";
+import { getOwners, setCurrentUser } from "../redux/userSlice";
 import Map from "../components/Map";
 import Post from "../components/Post";
 import NavigationBar from "../components/NavigationBar";
 import { OwnerService } from "../api/ownerService";
-import axios from "axios";
+import { getPets } from "../redux/petSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 function MainPage() {
   const ownerService = new OwnerService()
+  const owners = useSelector(state => state.user.owners)
   const user = useSelector((state) => state.user.currentUser);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
@@ -23,8 +24,15 @@ function MainPage() {
 
   useEffect(() => {    
     ownerService.getByUsername(user.username).then((response)=>dispatch(setCurrentUser(response.data.data)))
+    console.log(user)
   }, []);
 
+  useEffect(() => {
+    dispatch(getPets())
+    dispatch(getOwners())
+  }, [])
+
+  
   
   function newPostControlHandler(){
     if(user.pets.length>0){
@@ -32,6 +40,8 @@ function MainPage() {
   }else{
     history.push("/new-post")
   }
+
+  
   
 }
 
@@ -44,8 +54,8 @@ function MainPage() {
       {user.firstName && (
         <div>
           
-            <button onClick={newPostControlHandler} style={user.pets.length>0&&{background:"#ff5c4a"}} className="newPostButton">Yeni gönderi oluştur</button>
-          
+            <button onClick={newPostControlHandler} style={user.pets.length>0?{background:"#ff5c4a"}:{background:"green"}} className="newPostButton">Yeni gönderi oluştur</button>
+
         </div>
       )}
       {user.firstName && (
@@ -67,7 +77,7 @@ function MainPage() {
             lat={Number(user.latitude)}
             long={Number(user.longitude)}
             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDhnGNihMjkuJjLpo4HTcGfwuGn8frXPt4`}
-            loadingElement={<div style={{ height: `100%` }} />}
+            loadingElement={<div style={{ height: "100%" }} />}
             containerElement={
               <div
                 className={
@@ -77,16 +87,16 @@ function MainPage() {
                 }
               />
             }
-            mapElement={<div style={{ height: `100%` }} />}
+            mapElement={<div style={{ height: "100%" }} />}
           />
         </div>
       )}
       {isMobile && <h3>Gönderiler</h3>}
 
       <div>
-        <Post></Post>
-        <Post></Post>
-        <Post></Post>
+       {owners.map(owner=> owner.pets.map(pet=> <Post key={nanoid()} petOwner={owner} pet={pet}></Post>)
+       )}
+        
       </div>
     </div>
   );

@@ -17,7 +17,6 @@ export class PetService{
         const response = await axios.get(`http://localhost:8080/v1/pets/pets/genus/?id=${genus.id}`)
         return response
     }
-
     async addImage(pet, formData){
         const response = await axios.post(`http://localhost:8080/v1/pet-images/upload/?id=${pet.id}`,formData, {
             headers:{
@@ -31,4 +30,6 @@ export class PetService{
         const response = await axios.get(`http://localhost:8080/v1/pet-images/pet-image?id=${pet.id}`)
         return response
     }
+
+    
 }

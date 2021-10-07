@@ -1,34 +1,33 @@
-import React from "react";
+import { nanoid } from "@reduxjs/toolkit";
+import React, { useEffect, useState } from "react";
+import { PetService } from "../api/petService";
 
-function Post() {
+function Post(props ) {
+  console.log(props.petOwner)
   return (
     <div className="post">
     <div className="postFooter">
           <div className="postOwnerField">
               <img className="postOwnerImage" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
-              <h3>İsim Soyisim</h3>  
+              <h3>{props.petOwner.username}</h3>  
           </div>
       </div>
-      <img
+      {props.pet.images.length==1&&<img
         className="postImage"
-        src="https://image.shutterstock.com/image-photo/adult-stylish-man-playing-pet-600w-1040307988.jpg"
+        src={props.pet.images[0].imagePath}
       ></img>
+      ||
+      props.pet.images.length>1&&<div className="multiplePostImagesContainer">{props.pet.images.map(image=><img
+        className="postImage"
+        src={image.imagePath}
+        key={nanoid()}
+      ></img>
+      )}</div>}
 
       <div className="postDescription">
-      <h3>Hastalık başlığı</h3> 
+      <h3>{props.pet.disease}</h3> 
         <p>
-          Easy to set up for real, you can make it work in less than 10sec!
-          Super easy to customize RTL support Swipe to close 👌 Can choose swipe
-          direction Super easy to use an animation of your choice. Works well
-          with animate.css for example Can display a react component inside the
-          toast! Has onOpen and onClose hooks. Both can access the props passed
-          to the react component rendered inside the toast Can remove a toast
-          programmatically Define behavior per toast Pause toast when the window
-          loses focus 👁 Fancy progress bar to display the remaining time
-          Possibility to update a toast You can control the progress bar a la
-          nprogress 😲 You can limit the numgrammatically Define behavior per
-          toast Pause toast when the window loses focus 👁 Fancy progress bar to
-          display the remaining time Possibility to update a toastber of to
+          {props.pet.description}
         </p>
       </div>
       

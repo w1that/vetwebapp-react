@@ -42,8 +42,7 @@ function WelcomePage() {
   function loginHandler(){
       const ownerService = new OwnerService()
       const vetService = new VetService()
-        const owner = {username:username, password:password}
-        const vet = {username:username, password:password}
+
       if(selectedUserType==0){
           ownerService.getByUsername(username).then(response=>{
             const owner = response.data.data
@@ -63,6 +62,7 @@ function WelcomePage() {
             }
           })
       }
+
       if(selectedUserType==1){
         vetService.getByUsername(username).then(response=>{
           const vet = response.data.data
@@ -124,6 +124,7 @@ function WelcomePage() {
                   placeholder="kullanıcı adı"
                   onChange={(e) => setUsername(e.target.value)}
                   value={username}
+                  
                 ></input>
               </div>
               <div>

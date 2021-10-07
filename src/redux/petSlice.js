@@ -1,4 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PetService } from "../api/petService";
+
+const petService = new PetService()
+
+export const getPets = createAsyncThunk(
+    "pet/getPets",
+    async () => {
+      const response = await petService.getAll();
+      return response.data.data;
+    }
+  );
 
 const petSlice = createSlice({
     name:"pet",
@@ -8,8 +19,7 @@ const petSlice = createSlice({
         disease:"",
         description:"",
         age:0,
-
-
+        pets:[]
     },
     reducers:{
         setPet: (state,action)=>{
@@ -26,6 +36,11 @@ const petSlice = createSlice({
         },
         setAge:(state,action)=>{
             state.age = action.payload
+        }
+    },
+    extraReducers:{
+        [getPets.fulfilled]:(state,action)=>{
+            state.pets=action.payload
         }
     }
 })

@@ -19,7 +19,6 @@ function CreatePostPage() {
   const age = useSelector((state) => state.pet.age);
   const description = useSelector((state) => state.pet.description);
   const disease = useSelector((state) => state.pet.disease);
-//   const [file, setFile] = useState(null);
 const [files, setFiles] = useState([]);
 
   const [pet, setPet] = useState({ ownerId: user.id });
@@ -43,7 +42,6 @@ const [files, setFiles] = useState([]);
   }, []);
 
   function addPetHandler() {
-    // genus,owner,age, description, disease
     petService.add(genus, user, age, description, disease).then(()=>{
         files.forEach(file => {
             fileUpload(file)
@@ -54,17 +52,9 @@ const [files, setFiles] = useState([]);
             history.push("/mainpage")
         }, 500);
     })
-    // console.log()
-    // setTimeout(() => {
-    //     // fileUpload(file);
-    //     files.forEach(file => {
-    //         fileUpload(file)
-    //     });
-    // }, 1000);
   }
 
   function handleImagePreview(e) {
-    // setFile(e.target.files[0]);
     setFiles([...files, e.target.files[0]]);
   }
 console.log(files)
@@ -116,7 +106,7 @@ console.log(files)
             id="myFile"
             name="filename"
           ></input>
-          {/* <UploadedImages file={file}></UploadedImages> */}
+
           <UploadedImages files={files}></UploadedImages>
           <PublishPost addPetHandler={addPetHandler}></PublishPost>
         </div>

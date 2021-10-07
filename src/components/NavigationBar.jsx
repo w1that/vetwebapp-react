@@ -9,7 +9,7 @@ function NavigationBar() {
     const dispatch = useDispatch()
     const history = useHistory()
     function logoutHandler(){
-        dispatch(setCurrentUser(null))
+        dispatch(setCurrentUser({}))
         localStorage.removeItem("currentUser")
         history.push("/")
     }

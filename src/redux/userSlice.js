@@ -1,10 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { OwnerService } from "../api/ownerService";
+
+const ownerService = new OwnerService()
+
+export const getOwners = createAsyncThunk(
+    "owner/getOwners",
+    async () => {
+      const response = await ownerService.getAll();
+      return response.data.data;
+    }
+  );
 
 const userSlice = createSlice({
     name:"user",
     initialState:{
         // currentUser:{username:"username", password:"password", firstName:"firstname", lastName:"lastName"}
-        currentUser:JSON.parse(localStorage.getItem("currentUser"))
+        currentUser:JSON.parse(localStorage.getItem("currentUser")),
+        // currentUser:{},
+        owners:[]
     },
     reducers:{
         setCurrentUser :(state,action)=>{
@@ -12,7 +25,9 @@ const userSlice = createSlice({
         }
     },
     extraReducers:{
-
+        [getOwners.fulfilled]:(state,action)=>{
+            state.owners = action.payload
+        }
     }
 })
 
