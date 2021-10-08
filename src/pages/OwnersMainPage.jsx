@@ -10,8 +10,8 @@ import { OwnerService } from "../api/ownerService";
 import { getPets } from "../redux/petSlice";
 import { nanoid } from "@reduxjs/toolkit";
 
-function MainPage() {
-  const owners = useSelector((state) => state.user.owners);
+function OwnersMainPage() {
+    const owners = useSelector((state) => state.user.owners);
   const user = useSelector((state) => state.user.currentUser);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
@@ -42,9 +42,8 @@ function MainPage() {
       history.push("/new-post");
     }
   }
-
-  return (
-    <div style={{ background: "#FFFEF2" }}>
+    return (
+        <div style={{ background: "#FFFEF2" }}>
       <Route exact path="/mainpage">
         {" "}
         <NavigationBar></NavigationBar>
@@ -114,7 +113,7 @@ function MainPage() {
           )}
       </div>
     </div>
-  );
+    )
 }
 
-export default MainPage;
+export default OwnersMainPage

@@ -15,13 +15,17 @@ const userSlice = createSlice({
     name:"user",
     initialState:{
         // currentUser:{username:"username", password:"password", firstName:"firstname", lastName:"lastName"}
-        currentUser:JSON.parse(localStorage.getItem("currentUser")),
-        // currentUser:{},
-        owners:[]
+        // currentUser:JSON.parse(localStorage.getItem("currentUser")),
+        currentUser:{},
+        owners:[],
+        selectedUserType:(0)
     },
     reducers:{
         setCurrentUser :(state,action)=>{
             state.currentUser = action.payload;
+        },
+        setSelectedUserType:(state,action)=>{
+            state.selectedUserType = action.payload
         }
     },
     extraReducers:{
@@ -31,5 +35,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {setCurrentUser} = userSlice.actions
+export const {setCurrentUser, setSelectedUserType} = userSlice.actions
 export default userSlice.reducer

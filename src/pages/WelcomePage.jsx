@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { OwnerService } from "../api/ownerService";
 import { VetService } from "../api/vetService";
-import { setCurrentUser } from "../redux/userSlice";
+import { setCurrentUser, setSelectedUserType } from "../redux/userSlice";
 
 function WelcomePage() {
   const isDesktop = useMediaQuery({
     query: "(min-width: 1227px)",
   });
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
-
-  const [selectedUserType, setSelectedUserType] = useState(0);
-
+  const selectedUserType = useSelector(state => state.user.selectedUserType)
   const history = useHistory();
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if(localStorage.getItem('currentUser')){
-      history.push("/mainPage")
-    }
+    // if(localStorage.getItem('currentUser')){
+    //   history.push("/mainPage")
+    // }
   }, [history])
 
   function setOwnerOption() {
     setUsername("");
     setPassword("");
-    setSelectedUserType(0); // 0 means selected tab is owner
+    // setSelectedUserType(0); // 0 means selected tab is owner
+    dispatch(setSelectedUserType(0))
   }
 
   function setVetOption() {
     setUsername("");
     setPassword("");
-    setSelectedUserType(1); // 1 means selected tab is vet
+    // setSelectedUserType(1); // 1 means selected tab is vet
+    dispatch(setSelectedUserType(1))
   }
 
   const [username, setUsername] = useState("");
@@ -50,7 +50,7 @@ function WelcomePage() {
               if(owner.password===password){
                 dispatch(setCurrentUser(owner))
                 toast("başarıyla giriş yaptın")
-                localStorage.setItem('currentUser', JSON.stringify(owner))
+                // localStorage.setItem('currentUser', JSON.stringify(owner))
                 history.push("/mainpage")
               }
               else{
@@ -69,7 +69,7 @@ function WelcomePage() {
             if(vet.password===password){
               dispatch(setCurrentUser(vet))
               toast("başarıyla giriş yaptın")
-              localStorage.setItem('currentUser', JSON.stringify(vet))
+              // localStorage.setItem('currentUser', JSON.stringify(vet))
               history.push("/mainpage")
             }
             else{

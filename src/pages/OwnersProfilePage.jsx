@@ -5,20 +5,20 @@ import { toast } from 'react-toastify'
 import { OwnerService } from '../api/ownerService'
 import NavigationBar from '../components/NavigationBar'
 
-function ProfilePage() {
+function OwnersProfilePage() {
     let {username} = useParams()
     const history = useHistory()
     const [user, setUser] = useState({})
     const [file, setFile] = useState(null)
     const [visible, setVisible] = useState(false)
     const [imagePath, setImagePath] = useState('')
-    console.log("profilepage")
     useEffect(() => {
         const ownerService = new OwnerService()
         ownerService.getByUsername(username).then(response=>setUser(response.data.data))
     }, [])
 
     function changeProfilePictureHandler(){
+        setVisible(false)
        if(user.image){
         const ownerService = new OwnerService()
         ownerService.removeProfilePic(user.image.id).then(()=>fileUpload(file))
@@ -40,7 +40,8 @@ function ProfilePage() {
         const formData = new FormData();
         formData.append("imageFile", file);
         ownerService.uploadProfilePic(user, formData).then(()=>toast.success("profil fotoğrafı güncellendi")).catch(()=>toast.error("bir hata meydana geldi"))
-      }
+        
+    }
     return (
         <div>
             <div className="navibar" style={{ justifyContent:"flex-start"}}>
@@ -69,4 +70,4 @@ function ProfilePage() {
     )
 }
 
-export default ProfilePage
+export default OwnersProfilePage
