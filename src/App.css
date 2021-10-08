@@ -665,6 +665,11 @@ transition: 0.3s;
   border-radius: 1em;
   margin-left: 4px;
 }
+.profilePictureButton:hover{
+  cursor: pointer;
+  background-color: #5c7741;
+
+}
 
 .foundClinics{
   position: absolute;
@@ -707,8 +712,20 @@ padding: 1em;
     height: 500px;
 }
 
+.profileInnerContainerPetProfile{
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 2em;
+}
+
 
 @media only screen and (max-width: 1000px) {
+  .profileInnerContainerPetProfile{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
   .googleMapVetpage{
     width: 100%;
     height: 300px;
