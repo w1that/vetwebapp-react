@@ -58,7 +58,7 @@ function ProfilePage() {
             accept="image/png, image/gif, image/jpeg"
             name="filename"
           ></input>
-          <button onClick={changeProfilePictureHandler}>Onayla</button><button onClick={()=>setVisible(false)}>X</button>             </div>:''}
+          <button className="profilePictureButton" onClick={changeProfilePictureHandler}>Onayla</button><button className="profilePictureButton" onClick={()=>setVisible(false)}>X</button>             </div>:''}
                
                 </div>
                 

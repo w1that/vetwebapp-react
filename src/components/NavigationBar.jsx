@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { setCurrentUser } from '../redux/userSlice'
+import SearchBar from './SearchBar'
 
 function NavigationBar() {
     const user = useSelector(state => state.user.currentUser)
@@ -18,10 +19,7 @@ function NavigationBar() {
             <div className="navibar">
                 <Link className="routerLinkRemove" to="/mainpage"><h1 className="logoHeader">Pet Vet app</h1></Link>
                 {user.firstName&& 
-                   <div>
-                <input placeholder="klinik ara" className="searchBar"></input>
-                <button className="searchButton">Ara</button>
-                </div>
+                   <SearchBar></SearchBar>
                 
                 }
                 

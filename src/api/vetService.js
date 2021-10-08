@@ -16,4 +16,9 @@ export class VetService{
         const response = await axios.get(`http://localhost:8080/v1/vets/vet/username?username=${username}`)
         return response
     }
+
+    async getByClinicNameContaining(containing){
+        const response = await axios.get("http://localhost:8080/v1/vets/getByClinicNameContaining?containing="+ containing)
+        return response
+    }
 }

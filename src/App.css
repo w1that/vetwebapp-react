@@ -631,7 +631,6 @@ transition: 0.3s;
 }
 
 .profileContainer{
-  border: 1px solid red;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -640,7 +639,6 @@ transition: 0.3s;
 }
 
 .profileInnerContainer{
-  border: 1px solid red;
   margin-left: auto;
   margin-right: auto;
   width: 60%;
@@ -651,7 +649,6 @@ transition: 0.3s;
   width: 40%;
   
   border-radius: 40%;
-  border:10px solid black;
 }
 
 .profilePageImage:hover{
@@ -659,13 +656,89 @@ transition: 0.3s;
   cursor: pointer;
 }
 
+.profilePictureButton{
+  background-color: #7da15a;
+  border: 0px;
+  padding: 1em;
+  font-weight: bolder;
+  color: white;
+  border-radius: 1em;
+  margin-left: 4px;
+}
+
+.foundClinics{
+  position: absolute;
+  left: 25em;
+  width: 28em;
+  top:5.4em;
+  background-color: #c7b37b;
+  padding: 0.5em;
+  height: 6em;
+  overflow: auto;
+  border-radius:  0 0 1em 1em;
+}
+
+.foundClinic{
+  color: black;
+  padding: 0.3em;
+  background-color: #c7b37b;
+  transition: 0.3s;
+  border-radius: 4em;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.foundClinic:hover{
+  background-color: #b39b5b;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 
 @media only screen and (max-width: 1000px) {
+  .foundClinics{
+    position: fixed;
+    left: 0em;
+    width: 12em;
+    top:35em;
+    z-index: 1;
+    background-color: #c7b37b;
+    padding: 0.5em;
+    height: 6em;
+    overflow: auto;
+    border-radius: 1em 1em 0 0 ;
+  }
+  
+  .foundClinic{
+    color: black;
+    padding: 0.3em;
+    background-color: #c7b37b;
+    transition: 0.3s;
+    border-radius: 1em;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .foundClinic:hover{
+    background-color: #b39b5b;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .uploadImageButton{
+    border: 0px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 0.6em;
+  font-size: 14px;
+  color: black;
+  transition: 0.3s;
+  }
+
   .profilePageImage{
     width: 90%;
   
   border-radius:30%;
-  border:4px solid black;
+  height: 9em;
   }
 
   .uploadImageButton{
@@ -723,7 +796,7 @@ transition: 0.3s;
   .searchBar{
     position: fixed;
     bottom: 1em;
-    width: 5em;
+    width: 10em;
     height: 30px;
     left: 1em;
     border: 0px;
