@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MainPage from './pages/MainPage';
 import CreatePostPage from './pages/CreatePostPage';
 import ProfilePage from './pages/ProfilePage';
+import VisitedVeterinaryPage from './pages/VisitedVeterinaryPage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/mainpage"><MainPage></MainPage></Route>
         <Route path="/new-post"><CreatePostPage></CreatePostPage></Route>
         <Route path="/profile/:username"><ProfilePage></ProfilePage></Route>
+        <Route path="/veterinary/:clinicName"><VisitedVeterinaryPage></VisitedVeterinaryPage></Route>
     </div>
   );
 }

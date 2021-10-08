@@ -694,8 +694,25 @@ transition: 0.3s;
   transition: 0.3s;
 }
 
+.visitedVetContainer{
+  background-color: rgb(255, 255, 231);
+padding: 1em;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.googleMapVetpage{
+    width: 100%;
+    height: 500px;
+}
+
 
 @media only screen and (max-width: 1000px) {
+  .googleMapVetpage{
+    width: 100%;
+    height: 300px;
+}
   .foundClinics{
     position: fixed;
     left: 0em;

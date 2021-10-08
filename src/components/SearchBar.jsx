@@ -27,7 +27,7 @@ function SearchBar() {
                 {/* <button className="searchButton">Ara</button> */}
 
                 {visible&&clinics.length>0&&input.length>0?<div className="foundClinics">
-                    {clinics.map(clinic=><div onClick={()=>history.push(`/profile/${clinic.username}`)} className="foundClinic">{clinic.clinicName}</div>)}
+                    {clinics.map(clinic=><div onClick={()=>history.push(`/veterinary/${clinic.clinicName}`)} className="foundClinic">{clinic.clinicName}</div>)}
                 </div>:''}
                 </div>
         </div>
