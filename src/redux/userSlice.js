@@ -14,8 +14,6 @@ export const getOwners = createAsyncThunk(
 const userSlice = createSlice({
     name:"user",
     initialState:{
-        // currentUser:{username:"username", password:"password", firstName:"firstname", lastName:"lastName"}
-        // currentUser:JSON.parse(localStorage.getItem("currentUser")),
         currentUser:{},
         owners:[],
         selectedUserType:(0)

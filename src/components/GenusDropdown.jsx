@@ -4,12 +4,12 @@ import { GenusService } from "../api/genusService";
 import { setGenus } from "../redux/petSlice";
 
 function GenusDropdown() {
-  const [genuses, setGenuses] = useState([])
-  const dispatch = useDispatch()
+  const [genuses, setGenuses] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const genusService = new GenusService()
-    genusService.getAll().then(response=> setGenuses(response.data.data))
-  }, [])
+    const genusService = new GenusService();
+    genusService.getAll().then((response) => setGenuses(response.data.data));
+  }, []);
 
   const [dropdown, setDropdown] = useState(false);
   const [selectedItem, setSelectedItem] = useState({ name: "tür" });
@@ -25,7 +25,7 @@ function GenusDropdown() {
             <div
               onClick={() => {
                 setSelectedItem(item);
-                dispatch(setGenus(item))
+                dispatch(setGenus(item));
                 setDropdown(false);
               }}
               key={item.id}

@@ -8,7 +8,7 @@ import DiseaseObserve from "../components/DiseaseObserve";
 import GenusDropdown from "../components/GenusDropdown";
 import PublishPost from "../components/PublishPost";
 import UploadedImages from "../components/UploadedImages";
-import {  useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 
 function CreatePostPage() {
@@ -19,7 +19,7 @@ function CreatePostPage() {
   const age = useSelector((state) => state.pet.age);
   const description = useSelector((state) => state.pet.description);
   const disease = useSelector((state) => state.pet.disease);
-const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const [pet, setPet] = useState({ ownerId: user.id });
   useEffect(() => {
@@ -42,16 +42,15 @@ const [files, setFiles] = useState([]);
   }, [history, user.pets.length]);
 
   function addPetHandler() {
-    petService.add(genus, user, age, description, disease).then(()=>{
-        files.forEach(file => {
-            fileUpload(file)
-        })
-        toast.success("gönderi başarıyla oluşturuldu")
-        setTimeout(() => {
-            
-            history.push("/mainpage")
-        }, 500);
-    })
+    petService.add(genus, user, age, description, disease).then(() => {
+      files.forEach((file) => {
+        fileUpload(file);
+      });
+      toast.success("gönderi başarıyla oluşturuldu");
+      setTimeout(() => {
+        history.push("/mainpage");
+      }, 500);
+    });
   }
 
   function handleImagePreview(e) {
@@ -98,7 +97,7 @@ const [files, setFiles] = useState([]);
           <DiseaseObserve></DiseaseObserve>
           <DiseaseDescription></DiseaseDescription>
           <input
-            disabled={files.length===5&&'true'}
+            disabled={files.length === 5 && "true"}
             onChange={handleImagePreview}
             className="uploadImageButton"
             type="file"

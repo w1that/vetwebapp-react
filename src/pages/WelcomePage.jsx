@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link, useHistory } from "react-router-dom";
@@ -12,74 +12,65 @@ function WelcomePage() {
     query: "(min-width: 1227px)",
   });
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
-  const selectedUserType = useSelector(state => state.user.selectedUserType)
+  const selectedUserType = useSelector((state) => state.user.selectedUserType);
   const history = useHistory();
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    // if(localStorage.getItem('currentUser')){
-    //   history.push("/mainPage")
-    // }
-  }, [history])
+  const dispatch = useDispatch();
 
   function setOwnerOption() {
     setUsername("");
     setPassword("");
     // setSelectedUserType(0); // 0 means selected tab is owner
-    dispatch(setSelectedUserType(0))
+    dispatch(setSelectedUserType(0));
   }
 
   function setVetOption() {
     setUsername("");
     setPassword("");
     // setSelectedUserType(1); // 1 means selected tab is vet
-    dispatch(setSelectedUserType(1))
+    dispatch(setSelectedUserType(1));
   }
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function loginHandler(){
-      const ownerService = new OwnerService()
-      const vetService = new VetService()
+  function loginHandler() {
+    const ownerService = new OwnerService();
+    const vetService = new VetService();
 
-      if(selectedUserType===0){
-          ownerService.getByUsername(username).then(response=>{
-            const owner = response.data.data
-            if(owner !=null ){
-              if(owner.password===password){
-                dispatch(setCurrentUser(owner))
-                toast("başarıyla giriş yaptın")
-                // localStorage.setItem('currentUser', JSON.stringify(owner))
-                history.push("/mainpage")
-              }
-              else{
-                toast("böyle bir kullanıcı bulunamadı")
-              }
-            }else{
-              toast("böyle bir kullanıcı bulunamadı")
-            }
-          })
-      }
-
-      if(selectedUserType===1){
-        vetService.getByUsername(username).then(response=>{
-          const vet = response.data.data
-          if(vet !=null ){
-            if(vet.password===password){
-              dispatch(setCurrentUser(vet))
-              toast("başarıyla giriş yaptın")
-              // localStorage.setItem('currentUser', JSON.stringify(vet))
-              history.push("/mainpage")
-            }
-            else{
-              toast("böyle bir kullanıcı bulunamadı")
-            }
-          }else{
-            toast("böyle bir kullanıcı bulunamadı")
+    if (selectedUserType === 0) {
+      ownerService.getByUsername(username).then((response) => {
+        const owner = response.data.data;
+        if (owner != null) {
+          if (owner.password === password) {
+            dispatch(setCurrentUser(owner));
+            toast("başarıyla giriş yaptın");
+            history.push("/mainpage");
+          } else {
+            toast("böyle bir kullanıcı bulunamadı");
           }
-        })
-      }
+        } else {
+          toast("böyle bir kullanıcı bulunamadı");
+        }
+      });
+    }
+
+    if (selectedUserType === 1) {
+      vetService.getByUsername(username).then((response) => {
+        const vet = response.data.data;
+        if (vet != null) {
+          if (vet.password === password) {
+            dispatch(setCurrentUser(vet));
+            toast("başarıyla giriş yaptın");
+            // localStorage.setItem('currentUser', JSON.stringify(vet))
+            history.push("/mainpage");
+          } else {
+            toast("böyle bir kullanıcı bulunamadı");
+          }
+        } else {
+          toast("böyle bir kullanıcı bulunamadı");
+        }
+      });
+    }
   }
 
   return (
@@ -96,21 +87,35 @@ function WelcomePage() {
             <div className="userSelectTab">
               <h3
                 onClick={setOwnerOption}
-                className={(isDesktop&&`welcomepageFont ${
-                  selectedUserType === 0 ? "selectedOption" : "selectOption"
-                }`)|| (isMobile&&`welcomepageFont ${
-                  selectedUserType === 0 ? "selectedMobileOption" : "selectMobileOption"
-                }`)}
+                className={
+                  (isDesktop &&
+                    `welcomepageFont ${
+                      selectedUserType === 0 ? "selectedOption" : "selectOption"
+                    }`) ||
+                  (isMobile &&
+                    `welcomepageFont ${
+                      selectedUserType === 0
+                        ? "selectedMobileOption"
+                        : "selectMobileOption"
+                    }`)
+                }
               >
                 hayvan sahibi
               </h3>
               <h3
                 onClick={setVetOption}
-                className={(isDesktop&&`welcomepageFont ${
-                  selectedUserType === 1 ? "selectedOption" : "selectOption"
-                }`)|| (isMobile&&`welcomepageFont ${
-                  selectedUserType === 1 ? "selectedMobileOption" : "selectMobileOption"
-                }`)}
+                className={
+                  (isDesktop &&
+                    `welcomepageFont ${
+                      selectedUserType === 1 ? "selectedOption" : "selectOption"
+                    }`) ||
+                  (isMobile &&
+                    `welcomepageFont ${
+                      selectedUserType === 1
+                        ? "selectedMobileOption"
+                        : "selectMobileOption"
+                    }`)
+                }
               >
                 veteriner
               </h3>
@@ -123,7 +128,6 @@ function WelcomePage() {
                   placeholder="kullanıcı adı"
                   onChange={(e) => setUsername(e.target.value)}
                   value={username}
-                  
                 ></input>
               </div>
               <div>
@@ -135,7 +139,10 @@ function WelcomePage() {
                   value={password}
                 ></input>
               </div>
-              <button onClick={loginHandler} className="welcomepageButton welcomepageFont">
+              <button
+                onClick={loginHandler}
+                className="welcomepageButton welcomepageFont"
+              >
                 Giriş Yap
               </button>
               <p className="registerMessage welcomepageFont">

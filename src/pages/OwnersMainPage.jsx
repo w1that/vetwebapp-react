@@ -11,7 +11,7 @@ import { getPets } from "../redux/petSlice";
 import { nanoid } from "@reduxjs/toolkit";
 
 function OwnersMainPage() {
-    const owners = useSelector((state) => state.user.owners);
+  const owners = useSelector((state) => state.user.owners);
   const user = useSelector((state) => state.user.currentUser);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: "(max-width: 1227px)" });
@@ -20,7 +20,7 @@ function OwnersMainPage() {
   });
   const dispatch = useDispatch();
   const [mapVisibility, setMapVisibility] = useState(true);
-  const selectedUserType = useSelector(state => state.user.selectedUserType)
+  const selectedUserType = useSelector((state) => state.user.selectedUserType);
   useEffect(() => {
     const ownerService = new OwnerService();
     ownerService
@@ -42,8 +42,8 @@ function OwnersMainPage() {
       history.push("/new-post");
     }
   }
-    return (
-        <div style={{ background: "#FFFEF2" }}>
+  return (
+    <div style={{ background: "#FFFEF2" }}>
       <Route exact path="/mainpage">
         {" "}
         <NavigationBar></NavigationBar>
@@ -51,8 +51,7 @@ function OwnersMainPage() {
 
       <div className="mobileBottomBar"></div>
 
-      {/* {user.firstName && ( */}
-        {selectedUserType===0 ? (
+      {selectedUserType === 0 ? (
         <div>
           <button
             onClick={newPostControlHandler}
@@ -66,9 +65,10 @@ function OwnersMainPage() {
             Yeni gönderi oluştur
           </button>
         </div>
-      ):''}
-      {/* {user.firstName && ( */}
-        {selectedUserType===0 && (
+      ) : (
+        ""
+      )}
+      {selectedUserType === 0 && (
         <div className="googleMapField">
           <h3>
             Yakınındaki veterinerleri gör{" "}
@@ -113,7 +113,7 @@ function OwnersMainPage() {
           )}
       </div>
     </div>
-    )
+  );
 }
 
-export default OwnersMainPage
+export default OwnersMainPage;

@@ -12,7 +12,6 @@ function NavigationBar() {
   const selectedUserType = useSelector((state) => state.user.selectedUserType);
   function logoutHandler() {
     dispatch(setCurrentUser({}));
-    // localStorage.removeItem("currentUser");
     history.push("/");
   }
   return (
@@ -21,7 +20,6 @@ function NavigationBar() {
         <Link className="routerLinkRemove" to="/mainpage">
           <h1 className="logoHeader">Pet Vet app</h1>
         </Link>
-        {/* {user.firstName&&  */}
         {selectedUserType === 0 && <SearchBar></SearchBar>}
 
         <div
@@ -45,7 +43,7 @@ function NavigationBar() {
               alt="alt"
               className="naviImage"
               src={
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                "https://leverageedu.com/blog/wp-content/uploads/2019/11/Veterinary-Courses.png"
               }
             ></img>
           )}
@@ -58,15 +56,16 @@ function NavigationBar() {
         }
         className="dropdownMenu"
       >
-        {selectedUserType === 0 && (
+        {(selectedUserType === 0 && (
           <Link to={`/profile/${user.username}`}>
             <div className="dropdownItem">Profil</div>
           </Link>
-        ) || selectedUserType===1&& (
-          <Link to={`/profile/${user.clinicName}`}>
-            <div className="dropdownItem">Profil</div>
-          </Link>
-        )}
+        )) ||
+          (selectedUserType === 1 && (
+            <Link to={`/profile/${user.clinicName}`}>
+              <div className="dropdownItem">Profil</div>
+            </Link>
+          ))}
         <Link className="routerLinkRemove" to="/">
           <div onClick={logoutHandler} className="dropdownItem">
             Çıkış

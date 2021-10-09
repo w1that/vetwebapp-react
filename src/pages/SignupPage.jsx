@@ -5,8 +5,6 @@ import { OwnerService } from "../api/ownerService";
 import { VetService } from "../api/vetService";
 
 function SignupPage() {
-
-
   const isDesktop = useMediaQuery({
     query: "(min-width: 1227px)",
   });
@@ -74,19 +72,17 @@ function SignupPage() {
         latitude: latitude,
         longitude: longitude,
       };
-      ownerService
-        .register(owner)
-        .then((response) => {
-          if (response.data.success) {
-            alert("başarıyla kayıt oldun");
-            history.push("/");
-          } else {
-            alert(response.data.message);
-            setUsername("");
-            setPassword("");
-            setEmail("");
-          }
-        })
+      ownerService.register(owner).then((response) => {
+        if (response.data.success) {
+          alert("başarıyla kayıt oldun");
+          history.push("/");
+        } else {
+          alert(response.data.message);
+          setUsername("");
+          setPassword("");
+          setEmail("");
+        }
+      });
     }
     if (selectedUserType === 1) {
       const vet = {
@@ -97,28 +93,23 @@ function SignupPage() {
         latitude: latitude,
         longitude: longitude,
       };
-      vetService
-        .register(vet)
-        .then((response) => {
-          if (response.data.success) {
-            alert("başarıyla kayıt olundu");
-            history.push("/");
-          } else {
-            alert(response.data.message);
-            setUsername("");
-            setPassword("");
-            setEmail("");
-          }
-        })
+      vetService.register(vet).then((response) => {
+        if (response.data.success) {
+          alert("başarıyla kayıt olundu");
+          history.push("/");
+        } else {
+          alert(response.data.message);
+          setUsername("");
+          setPassword("");
+          setEmail("");
+        }
+      });
     }
   }
 
   return (
     <div>
       <div className="backgroundDiv">
-       
-          
-        
         <div
           className={
             (isMobile && "blurredFieldSignUpMobile") ||
@@ -130,21 +121,35 @@ function SignupPage() {
             <div className="userSelectTab">
               <h3
                 onClick={setOwnerOption}
-                className={(isDesktop&&`welcomepageFont ${
-                  selectedUserType === 0 ? "selectedOption" : "selectOption"
-                }`)|| (isMobile&&`welcomepageFont ${
-                  selectedUserType === 0 ? "selectedMobileOption" : "selectMobileOption"
-                }`)}
+                className={
+                  (isDesktop &&
+                    `welcomepageFont ${
+                      selectedUserType === 0 ? "selectedOption" : "selectOption"
+                    }`) ||
+                  (isMobile &&
+                    `welcomepageFont ${
+                      selectedUserType === 0
+                        ? "selectedMobileOption"
+                        : "selectMobileOption"
+                    }`)
+                }
               >
                 hayvan sahibi
               </h3>
               <h3
                 onClick={setVetOption}
-                className={(isDesktop&&`welcomepageFont ${
-                  selectedUserType === 1 ? "selectedOption" : "selectOption"
-                }`)|| (isMobile&&`welcomepageFont ${
-                  selectedUserType === 1 ? "selectedMobileOption" : "selectMobileOption"
-                }`)}
+                className={
+                  (isDesktop &&
+                    `welcomepageFont ${
+                      selectedUserType === 1 ? "selectedOption" : "selectOption"
+                    }`) ||
+                  (isMobile &&
+                    `welcomepageFont ${
+                      selectedUserType === 1
+                        ? "selectedMobileOption"
+                        : "selectMobileOption"
+                    }`)
+                }
               >
                 veteriner
               </h3>
@@ -154,7 +159,10 @@ function SignupPage() {
               {selectedUserType === 0 && (
                 <div>
                   <input
-                    className={(isMobile&&`signUpPageMobileInput welcomepageFont`)|| (isDesktop&&`signUpPageInput welcomepageFont`)}
+                    className={
+                      (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                      (isDesktop && `signUpPageInput welcomepageFont`)
+                    }
                     placeholder="isim"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -164,7 +172,10 @@ function SignupPage() {
               {selectedUserType === 0 && (
                 <div>
                   <input
-                    className={(isMobile&&`signUpPageMobileInput welcomepageFont`)|| (isDesktop&&`signUpPageInput welcomepageFont`)}
+                    className={
+                      (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                      (isDesktop && `signUpPageInput welcomepageFont`)
+                    }
                     placeholder="soyisim"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -174,7 +185,10 @@ function SignupPage() {
               {selectedUserType === 1 && (
                 <div>
                   <input
-                    className={(isMobile&&`signUpPageMobileInput welcomepageFont`)|| (isDesktop&&`signUpPageInput welcomepageFont`)}
+                    className={
+                      (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                      (isDesktop && `signUpPageInput welcomepageFont`)
+                    }
                     placeholder="klinik ismi"
                     value={clinicName}
                     onChange={(e) => setClinicName(e.target.value)}
@@ -183,7 +197,10 @@ function SignupPage() {
               )}
               <div>
                 <input
-                  className={(isMobile&&`signUpPageMobileInput welcomepageFont`)|| (isDesktop&&`signUpPageInput welcomepageFont`)}
+                  className={
+                    (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                    (isDesktop && `signUpPageInput welcomepageFont`)
+                  }
                   placeholder="kullanıcı adı"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -191,7 +208,10 @@ function SignupPage() {
               </div>
               <div>
                 <input
-                  className={(isMobile&&`signUpPageMobileInput welcomepageFont`)|| (isDesktop&&`signUpPageInput welcomepageFont`)}
+                  className={
+                    (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                    (isDesktop && `signUpPageInput welcomepageFont`)
+                  }
                   placeholder="e-posta"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -199,7 +219,10 @@ function SignupPage() {
               </div>
               <div>
                 <input
-                  className={(isMobile&&`signUpPageMobileInput welcomepageFont`)||( isDesktop&&`signUpPageInput welcomepageFont`)}
+                  className={
+                    (isMobile && `signUpPageMobileInput welcomepageFont`) ||
+                    (isDesktop && `signUpPageInput welcomepageFont`)
+                  }
                   placeholder="şifre"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -229,7 +252,7 @@ function SignupPage() {
                   </label>
                 </Link>
               </p>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
